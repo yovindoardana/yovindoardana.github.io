@@ -45,9 +45,10 @@ const Contact = () => {
           <NetlifyForm
             honeypotName='bot-field'
             name="Contact"
-            action="/thanks"
+            method='post'
             onSuccess={ (response, context) => {
               console.log('Successfully sent form data to Netlify Server')
+              console.log(response)
               context.formRef.current.reset()
             }}>
           { ({ handleChange, success, error }) => (
@@ -97,11 +98,7 @@ const Contact = () => {
               onChange={handleChange}
             />
           </div>
-          <button
-            type="submit"
-            className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
-            Submit
-          </button>
+          <input type="submit" className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"/>
             </>
           ) }
         </NetlifyForm>
