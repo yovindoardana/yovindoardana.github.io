@@ -26,7 +26,7 @@ export default function Course () {
                   className="absolute inset-0 w-full h-full object-cover object-center"
                   src={course.image}
                 />
-                <div className="px-8 py-10 relative min-h-fit w-[30rem] sm:w-100 border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
+                <div className="px-8 py-10 relative min-h-fit w-[70vw] sm:w-100 border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
                   <h2 className="tracking-widest text-sm title-font font-medium text-sky-400 mb-1">
                     {course.type}
                   </h2>
