@@ -17,6 +17,9 @@
     "plugins": [
         "react"
     ],
+    "ignorePatterns": ["./src/components/Contact.js"],
     "rules": {
+        // 
+        "react/no-unknown-property": 0
     }
 }

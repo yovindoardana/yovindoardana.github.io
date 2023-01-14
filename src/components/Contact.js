@@ -1,7 +1,29 @@
 import React from 'react'
-import { NetlifyForm, Honeypot } from 'react-netlify-forms'
 
 const Contact = () => {
+  const [name, setName] = React.useState('')
+  const [email, setEmail] = React.useState('')
+  const [message, setMessage] = React.useState('')
+
+  function encode (data) {
+    return Object.keys(data)
+      .map(
+        (key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])
+      )
+      .join('&')
+  }
+
+  function handleSubmit (e) {
+    e.preventDefault()
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({ 'form-name': 'test', name, email, message })
+    })
+      .then(() => alert('Message sent!'))
+      .catch((error) => alert(error))
+  }
+
   return (
     <section id="contact" className="relative">
       <div className="container px-5 py-10 mx-auto flex sm:flex-nowrap flex-wrap">
@@ -42,35 +64,21 @@ const Contact = () => {
           </div>
         </div>
         <div className="lg:w-1/3 md:w-1/2 flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
-          <NetlifyForm
-            honeypotName='bot-field'
-            name="Contact"
-            method='post'
-            onSuccess={ (response, context) => {
-              console.log('Successfully sent form data to Netlify Server')
-              console.log(response)
-              context.formRef.current.reset()
-            }}>
-          { ({ handleChange, success, error }) => (
-            <>
-              <Honeypot />
-              { success && <p>Thanks for contacting me!</p> }
-              { error && (
-                <p>Sorry, we could not reach our servers. Please try again later.</p>
-              )}
-              <h2 className="text-white sm:text-4xl text-3xl mb-1 mt-10 sm:mt-0 font-medium title-font">
-            Contact Me
-          </h2>
-          <div className="relative mb-4">
-            <label htmlFor="name" className="leading-7 text-sm text-gray-400">
-              Name
-            </label>
+          <form data-netlify="true" netlify-honeypot='bot-field' name="Contact" method='post' onSubmit={handleSubmit}>
+            <h2 className="text-white sm:text-4xl text-3xl mb-1 mt-10 sm:mt-0 font-medium title-font">Contact Me</h2>
+            <div hidden>
+              <input name='form-name' value='Contact' readOnly/>
+            </div>
+            <div className="relative mb-4">
+              <label htmlFor="name" className="leading-7 text-sm text-gray-400">
+                Name
+              </label>
             <input
               type="text"
               id="name"
               name="name"
               className="w-full bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-              onChange={handleChange}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div className="relative mb-4">
@@ -82,7 +90,7 @@ const Contact = () => {
               id="email"
               name="email"
               className="w-full bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-              onChange={handleChange}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="relative mb-4">
@@ -95,13 +103,11 @@ const Contact = () => {
               id="message"
               name="message"
               className="w-full bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 h-32 text-base outline-none text-gray-100 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-              onChange={handleChange}
+              onChange={(e) => setMessage(e.target.value)}
             />
           </div>
           <input type="submit" className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"/>
-            </>
-          ) }
-        </NetlifyForm>
+        </form>
         </div>
       </div>
     </section>
