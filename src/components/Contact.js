@@ -15,7 +15,7 @@ const Contact = () => {
 
   function handleSubmit (e) {
     e.preventDefault()
-    fetch('/', {
+    fetch('/dist', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({ 'form-name': 'test', name, email, message })
