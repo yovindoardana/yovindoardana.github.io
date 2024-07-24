@@ -11,13 +11,13 @@ export default function About () {
             I love to build amazing apps.
           </h1>
           <p className="mb-8 leading-relaxed">
-            A Junior Front-End Developer, who always expand experiences and knowledge. A well-rounded person who has an interest in the Web Developing. Also known as an active and hard-working which loves to collaborate in diverse environments.
+            A Front-End Developer, who always expand experiences and knowledge. A well-rounded person who has an interest in the Web Developing. Also known as an active and hard-working which loves to collaborate in diverse environments.
           </p>
           <div className="flex justify-center">
             <a
               href="#contact"
               className="inline-flex text-white bg-sky-500 border-0 py-2 px-6 focus:outline-none hover:bg-sky-600 rounded text-lg">
-              Work With Me
+              Collaborate With Me
             </a>
             <a
               href="#projects"

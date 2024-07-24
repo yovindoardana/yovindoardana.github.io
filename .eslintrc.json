@@ -4,6 +4,11 @@
         "es2021": true,
         "node": true
     },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
     "extends": [
         "plugin:react/recommended",
         "standard"
@@ -17,9 +22,6 @@
     "plugins": [
         "react"
     ],
-    "ignorePatterns": ["./src/components/Contact.js"],
     "rules": {
-        // 
-        "react/no-unknown-property": 0
     }
 }
